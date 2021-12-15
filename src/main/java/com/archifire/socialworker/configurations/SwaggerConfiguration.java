@@ -11,6 +11,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 // Swagger3: http://localhost:8080/swagger-ui/index.html
+// 스웨거 동작 안함.(확인해봐야함.)
 //@Configuration
 //@EnableSwagger2
 public class SwaggerConfiguration {
