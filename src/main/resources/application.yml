@@ -12,6 +12,11 @@ server:
       suffix: 'log' # Log file name suffix.
 
 spring:
+  task:
+    execution:
+      pool:
+        core-size: 400
+        max-size: 400
   datasource:
     #url: jdbc:h2:tcp://localhost:1521/~/test
     url: jdbc:h2:mem:testdb
