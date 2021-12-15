@@ -11,9 +11,13 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 configurations {
+
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+
+	// log4j2 를 사용하기위해 logback 비활성화
+	compile.exclude module: 'spring-boot-starter-logging'
 }
 
 repositories {
@@ -30,8 +34,9 @@ dependencies {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 	}
 	implementation 'org.springframework.boot:spring-boot-starter-undertow'
-	implementation('io.springfox:springfox-swagger2:3.0.0')
-	implementation('io.springfox:springfox-swagger-ui:2.8.0')
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:2.8.0'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 
 	//Java bean mappings
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
@@ -42,10 +47,12 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 
-
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 	testImplementation 'io.projectreactor:reactor-test'
+
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 }
 
 bootJar {

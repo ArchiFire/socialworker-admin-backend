@@ -17,6 +17,7 @@ spring:
       pool:
         core-size: 400
         max-size: 400
+
   datasource:
     #url: jdbc:h2:tcp://localhost:1521/~/test
     url: jdbc:h2:mem:testdb
@@ -29,3 +30,6 @@ spring:
   h2:
     console:
       enabled: true
+
+logging:
+  config: 'classpath:log4j2.xml'
