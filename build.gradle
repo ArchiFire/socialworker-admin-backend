@@ -11,6 +11,10 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -21,6 +25,7 @@ repositories {
 }
 
 def mapstructVersion = '1.5.0.Beta2'
+ext['log4j2.version'] = '2.16.0'
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
@@ -29,9 +34,12 @@ dependencies {
 	implementation ('org.springframework.boot:spring-boot-starter-web') {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 	}
-	implementation 'org.springframework.boot:spring-boot-starter-undertow'
-	implementation('io.springfox:springfox-swagger2:3.0.0')
-	implementation('io.springfox:springfox-swagger-ui:2.8.0')
+	implementation ('org.springframework.boot:spring-boot-starter-undertow') {
+		exclude group: 'io.undertow', module: 'undertow-websockets-jsr'
+	}
+
+	//log4j
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 
 	//Java bean mappings
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
@@ -42,10 +50,12 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 
-
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 	testImplementation 'io.projectreactor:reactor-test'
+
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 }
 
 bootJar {
