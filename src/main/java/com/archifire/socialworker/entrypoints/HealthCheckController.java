@@ -11,5 +11,8 @@ public class HealthCheckController {
         return "SocialWorkAPI is OK!!";
     }
 
-
+    @GetMapping(value = "/")
+    public String root() {
+        return "SocialWorkAPI";
+    }
 }
