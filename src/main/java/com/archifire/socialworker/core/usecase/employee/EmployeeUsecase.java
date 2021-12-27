@@ -1,4 +1,4 @@
-package com.archifire.socialworker.core.employee;
+package com.archifire.socialworker.core.usecase.employee;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
