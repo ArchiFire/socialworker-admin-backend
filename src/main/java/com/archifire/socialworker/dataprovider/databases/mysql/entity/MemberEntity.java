@@ -8,6 +8,9 @@ import lombok.*;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity(name = "member")
+@Table(indexes = {
+    @Index(name="unique_idx_id", columnList = "id", unique = true)
+})
 public class MemberEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -27,7 +27,8 @@ class MemberRepositoryTest {
 
         MemberEntity member2 = new MemberEntity();
         member2.setName("lee2");
-        member2.setId("kkan799");
+        member2.setId("kkan7990"
+            + "");
         member2.setPw("1234");
 
         MemberEntity save = memberRepository.save(member);
@@ -57,6 +58,12 @@ class MemberRepositoryTest {
         MemberEntity memberEntity = memberRepositoryById.orElseGet(MemberEntity::new);
 
         Assertions.assertNull(memberEntity.getMemberNo());
+    }
+
+    @Test
+    @DisplayName("member 전체 삭제")
+    void deleteAll() {
+        memberRepository.deleteAll();
     }
 
 }
